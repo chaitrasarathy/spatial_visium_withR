@@ -1,4 +1,4 @@
-# Spatial Transcriptomics Analysis — 10x Visium Mouse Brain
+# Spatial Transcriptomics Analysis: 10x Visium Mouse Brain
 End-to-end spatial transcriptomics workflow on the 10x Visium mouse brain anterior coronal section. Analysis covers quality control, SCTransform normalisation, unsupervised clustering, spatially variable gene detection (Moran's I), and projection of clusters and marker genes onto tissue. Built with Seurat v5.
 
 # Data
