@@ -6,14 +6,20 @@ The 10x Visium mouse brain anterior coronal section is loaded via the SeuratData
 
 # Reproducibility
 Requirements: R ≥ 4.3, Seurat ≥ 5.0, SeuratData, ggplot2, patchwork
-bash # Install the dataset (once)
+```bash
+# Install the dataset (once)
 Rscript -e 'SeuratData::InstallData("stxBrain")'
+
+# Run the full analysis
+Rscript analysis/visium_mouse_brain_analysis.R
+```
 
 # Run the full analysis
 Rscript analysis/visium_mouse_brain_analysis.R
 All figures are written to figures/. A full sessionInfo() is saved to figures/session_info.txt.
 
 # Repository structure
+```
 ├── README.md
 ├── analysis/
 │   └── visium_mouse_brain_analysis.R
@@ -26,3 +32,4 @@ All figures are written to figures/. A full sessionInfo() is saved to figures/se
 │   └── session_info.txt
 ├── .gitignore
 └── LICENSE
+```
