@@ -1,0 +1,69 @@
+# Visium HD analysis configuration
+# Update these values for each sample or project.
+
+sample:
+  id: "CRC_VisiumHD"
+  species: "human"
+  tissue: "colorectal cancer"
+  platform: "Visium HD"
+  description: >
+    Spatial transcriptomics analysis of human colorectal cancer using
+    Visium HD gene-expression data.
+
+paths:
+  space_ranger_dir: "data/raw/CRC_VisiumHD"
+  output_dir: "results/CRC_VisiumHD"
+  reference_rds: "data/reference/colon_scRNA_reference.rds"
+  reference_celltype_column: "cell_type"
+  report_output: "reports/visium_hd_report.html"
+
+analysis:
+  bin_size_um: 16
+  min_counts: 50
+  min_genes: 20
+  max_mito_percent: 20
+  normalize_method: "SCT"
+  n_variable_features: 3000
+  pca_dims: 30
+  cluster_resolution: 0.5
+  umap_neighbors: 30
+  umap_min_dist: 0.3
+  spatial_neighbors_method: "knn"
+  n_spatial_neighbors: 6
+
+deconvolution:
+  method: "RCTD"
+  min_reference_cells_per_type: 25
+  max_cores: 4
+  rctd_mode: "doublet"
+
+marker_genes:
+  tumor_epithelium:
+    - EPCAM
+    - KRT8
+    - KRT18
+    - KRT20
+    - CEACAM5
+  goblet_cells:
+    - MUC2
+    - TFF3
+    - AGR2
+  stroma:
+    - COL1A1
+    - DCN
+    - LUM
+    - ACTA2
+  endothelial:
+    - PECAM1
+    - VWF
+    - CLDN5
+  immune:
+    - PTPRC
+    - CD3D
+    - CD8A
+    - MS4A1
+    - LYZ
+  smooth_muscle:
+    - ACTA2
+    - TAGLN
+    - MYH11

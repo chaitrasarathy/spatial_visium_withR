@@ -1,0 +1,19 @@
+name: visium-hd-r
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - r-base=4.4
+  - r-seurat
+  - r-seuratobject
+  - r-ggplot2
+  - r-patchwork
+  - r-dplyr
+  - r-tidyr
+  - r-readr
+  - r-yaml
+  - r-future
+  - r-future.apply
+  - bioconductor-spacexr
+  - quarto
+  - git
