@@ -1,0 +1,100 @@
+---
+title: "Visium HD Spatial Transcriptomics Analysis"
+subtitle: "Reproducible core-facility analysis report"
+author: "Your Name"
+date: today
+format:
+  html:
+    toc: true
+    code-fold: true
+    theme: cosmo
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# Project overview
+
+This report summarizes a Visium HD spatial transcriptomics analysis for the configured sample.
+
+```{r}
+#| label: load-config
+source("../R/utils.R")
+config <- read_config("../config/config.yaml")
+config$sample
+```
+
+## Data and methods
+
+- Platform: `r config$sample$platform`
+- Tissue: `r config$sample$tissue`
+- Bin size: `r config$analysis$bin_size_um` um
+- Normalization: `r config$analysis$normalize_method`
+- Clustering resolution: `r config$analysis$cluster_resolution`
+- Deconvolution method: `r config$deconvolution$method`
+
+## Quality control
+
+```{r}
+#| label: qc-summary
+qc_path <- file.path(
+  config$paths$output_dir,
+  "qc",
+  "qc_summary.csv"
+)
+
+if (file.exists(qc_path)) {
+  read.csv(qc_path)
+} else {
+  "QC summary not yet generated."
+}
+```
+
+## Clustering and tissue domains
+
+```{r}
+#| label: clustering-figure
+#| fig-width: 10
+#| fig-height: 7
+cluster_plot <- file.path(
+  config$paths$output_dir,
+  "clustering",
+  "spatial_clusters.png"
+)
+
+if (file.exists(cluster_plot)) {
+  knitr::include_graphics(cluster_plot)
+}
+```
+
+## Cell-type deconvolution
+
+```{r}
+#| label: deconvolution-figure
+#| fig-width: 10
+#| fig-height: 7
+decon_plot <- file.path(
+  config$paths$output_dir,
+  "deconvolution",
+  "rctd_dominant_celltype_map.png"
+)
+
+if (file.exists(decon_plot)) {
+  knitr::include_graphics(decon_plot)
+}
+```
+
+## Interpretation and limitations
+
+- Tissue-domain annotations should be interpreted alongside histology and marker-gene expression.
+- Deconvolution estimates depend on the quality and biological relevance of the single-cell reference.
+- Spatial neighborhood results should be interpreted cautiously when tissue orientation, section quality, or batch effects are uncertain.
+- Results should be validated experimentally before being treated as definitive biological conclusions.
+
+## Reproducibility
+
+```{r}
+#| label: session-info
+sessionInfo()
+```
